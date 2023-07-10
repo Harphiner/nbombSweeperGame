@@ -31,6 +31,10 @@ void MainWindow::paintEvent(QPaintEvent*)
     QPixmap pix;
     pix.load(":/image/res/image/background.jpg");
     painter.drawPixmap(0,0,this->width(),this->height(),pix);
+    pix.load(":/icon/res/icon/windowtitle.png");
+    painter.drawPixmap(20,50,50,50,pix);
+    pix.load(":/image/res/image/title_red.png");
+    painter.drawPixmap(70,35,900,100,pix);
 }
 void MainWindow::welcomeInit()
 {

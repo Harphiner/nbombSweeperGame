@@ -35,6 +35,9 @@
     </qresource>
     <qresource prefix="/image">
         <file>res/image/background.jpg</file>
+        <file>res/image/title_white.png</file>
+        <file>res/image/title.png</file>
+        <file>res/image/title_red.png</file>
     </qresource>
     <qresource prefix="/font">
         <file>res/font/foreign/Blackhawk-webfont.woff2.ttf</file>
