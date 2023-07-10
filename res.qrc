@@ -31,5 +31,12 @@
         <file>res/icon/zhadan.png</file>
         <file>res/icon/zidingyi.png</file>
         <file>res/icon/nandu123.png</file>
+        <file>res/icon/windowtitle.png</file>
+    </qresource>
+    <qresource prefix="/image">
+        <file>res/image/background.jpg</file>
+    </qresource>
+    <qresource prefix="/font">
+        <file>res/font/foreign/Blackhawk-webfont.woff2.ttf</file>
     </qresource>
 </RCC>
