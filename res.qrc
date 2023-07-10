@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>res/icon/a-saolei2x.png</file>
+        <file>res/icon/bangzhuwendang.png</file>
+        <file>res/icon/bomb.png</file>
+        <file>res/icon/chakan.png</file>
+        <file>res/icon/ditutubiao-saoleixiaonengshou.png</file>
+        <file>res/icon/jiangbei.png</file>
+        <file>res/icon/jiangpai.png</file>
+        <file>res/icon/kaishi.png</file>
+        <file>res/icon/kaishiyouxi.png</file>
+        <file>res/icon/lishixiao.png</file>
+        <file>res/icon/minesweeper.png</file>
+        <file>res/icon/nandu.png</file>
+        <file>res/icon/nandu_1.png</file>
+        <file>res/icon/nanduban.png</file>
+        <file>res/icon/nandukong.png</file>
+        <file>res/icon/qizhi.png</file>
+        <file>res/icon/queren.png</file>
+        <file>res/icon/quxiao.png</file>
+        <file>res/icon/saolei.png</file>
+        <file>res/icon/saoleix.png</file>
+        <file>res/icon/saoleizuoyekaishinorbeifen.png</file>
+        <file>res/icon/tongyong_timu_nandu1.png</file>
+        <file>res/icon/tongyong_timu_nandu2.png</file>
+        <file>res/icon/tongyong_timu_nandu4.png</file>
+        <file>res/icon/tongyong_timu_nandu5.png</file>
+        <file>res/icon/tuichuyouxi.png</file>
+        <file>res/icon/wangguan.png</file>
+        <file>res/icon/yibaocuntupian.png</file>
+        <file>res/icon/zhadan.png</file>
+        <file>res/icon/zidingyi.png</file>
+        <file>res/icon/nandu123.png</file>
+    </qresource>
+</RCC>

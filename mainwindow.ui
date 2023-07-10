@@ -14,9 +14,114 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_defaultStart">
+    <property name="title">
+     <string>开始</string>
+    </property>
+    <property name="separatorsCollapsible">
+     <bool>true</bool>
+    </property>
+    <property name="toolTipsVisible">
+     <bool>true</bool>
+    </property>
+    <addaction name="actioneasy"/>
+    <addaction name="actionmiddle"/>
+    <addaction name="actionhard"/>
+   </widget>
+   <widget class="QMenu" name="menu_diy">
+    <property name="title">
+     <string>自定义</string>
+    </property>
+    <addaction name="actionedit"/>
+    <addaction name="actionsavedSettings"/>
+   </widget>
+   <widget class="QMenu" name="menu_more">
+    <property name="title">
+     <string>查看</string>
+    </property>
+    <addaction name="actionhistory"/>
+    <addaction name="actionassistant"/>
+   </widget>
+   <addaction name="menu_defaultStart"/>
+   <addaction name="menu_diy"/>
+   <addaction name="menu_more"/>
+  </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actioneasy">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icon/res/icon/nandukong.png</normaloff>:/icon/res/icon/nandukong.png</iconset>
+   </property>
+   <property name="text">
+    <string>简单</string>
+   </property>
+  </action>
+  <action name="actionmiddle">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icon/res/icon/nanduban.png</normaloff>:/icon/res/icon/nanduban.png</iconset>
+   </property>
+   <property name="text">
+    <string>中等</string>
+   </property>
+  </action>
+  <action name="actionhard">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icon/res/icon/nandu123.png</normaloff>:/icon/res/icon/nandu123.png</iconset>
+   </property>
+   <property name="text">
+    <string>困难</string>
+   </property>
+  </action>
+  <action name="actionedit">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icon/res/icon/zidingyi.png</normaloff>:/icon/res/icon/zidingyi.png</iconset>
+   </property>
+   <property name="text">
+    <string>编辑</string>
+   </property>
+  </action>
+  <action name="actionsavedSettings">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icon/res/icon/yibaocuntupian.png</normaloff>:/icon/res/icon/yibaocuntupian.png</iconset>
+   </property>
+   <property name="text">
+    <string>已保存配置</string>
+   </property>
+  </action>
+  <action name="actionhistory">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icon/res/icon/chakan.png</normaloff>:/icon/res/icon/chakan.png</iconset>
+   </property>
+   <property name="text">
+    <string>history</string>
+   </property>
+  </action>
+  <action name="actionassistant">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icon/res/icon/bangzhuwendang.png</normaloff>:/icon/res/icon/bangzhuwendang.png</iconset>
+   </property>
+   <property name="text">
+    <string>assistant</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections/>
 </ui>
