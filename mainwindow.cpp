@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QPainter>
+#include <QLinearGradient>
+#include <QColor>
 #include <QTimer>
 #include <QDebug>
 #include <QFontDatabase>
@@ -17,6 +19,10 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowIcon(QPixmap(":/icon/res/icon/windowtitle.png"));
     //设置固定大小
     this->setFixedSize(600,600);
+    //设置"开始游戏"图样标签
+    pixlable=new QLabel(this);
+    this->pixlable->setFixedSize(118,50);
+    this->pixlable->move(241,350);
     welcomeInit();
 }
 //析构函数
@@ -24,17 +30,26 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-//绘图事件，设置背景图片
+//绘图事件，设置背景渐变色，设置titleicon，设置startgame图片
 void MainWindow::paintEvent(QPaintEvent*)
 {
     QPainter painter(this);
+    //设置渐变背景
+    QLinearGradient gradient(0, 0, width(), height());
+    gradient.setColorAt(0.0, QColor(171,165,166));
+    gradient.setColorAt(1.0, QColor(208,242,248,128));
+    painter.setBrush(gradient);
+    painter.drawRect(0, 0, width(), height());
     QPixmap pix;
-    pix.load(":/image/res/image/background.jpg");
-    painter.drawPixmap(0,0,this->width(),this->height(),pix);
+//    pix.load(":/image/res/image/background.jpg");
+//    painter.drawPixmap(0,0,this->width(),this->height(),pix);
     pix.load(":/icon/res/icon/windowtitle.png");
     painter.drawPixmap(20,50,50,50,pix);
     pix.load(":/image/res/image/title_red.png");
     painter.drawPixmap(70,35,900,100,pix);
+    pix.load(":/icon/res/icon/startgame.png");
+    QPixmap scaledPix = pix.scaled(118, 50, Qt::KeepAspectRatio);
+    pixlable->setPixmap(scaledPix);
 }
 void MainWindow::welcomeInit()
 {
@@ -44,7 +59,7 @@ void MainWindow::welcomeInit()
     //设置plaintext文本框透明,边框属性，并且设置字体颜色
     ui->textEdit_welcome->setStyleSheet("background-color: transparent; border: none;color:white");
     //设置字体家族
-    int id = QFontDatabase::addApplicationFont(":/font/res/font/foreign/Blackhawk-webfont.woff2.ttf");
+    int id = QFontDatabase::addApplicationFont(":/font/res/font/foreign/Comic Sans MS.ttf");
     QString family;
     if (id != -1) {
         family = QFontDatabase::applicationFontFamilies(id).at(0);

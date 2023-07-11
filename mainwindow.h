@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QPainter>
+#include <QLabel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,8 +18,9 @@ public:
     ~MainWindow();
     void paintEvent(QPaintEvent*);//重定义绘图事件
     void welcomeInit();
-
+    QLabel* pixlable;
 private:
     Ui::MainWindow *ui;//引入ui
+
 };
 #endif // MAINWINDOW_H

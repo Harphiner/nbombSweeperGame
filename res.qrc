@@ -8,7 +8,6 @@
         <file>res/icon/jiangbei.png</file>
         <file>res/icon/jiangpai.png</file>
         <file>res/icon/kaishi.png</file>
-        <file>res/icon/kaishiyouxi.png</file>
         <file>res/icon/lishixiao.png</file>
         <file>res/icon/minesweeper.png</file>
         <file>res/icon/nandu.png</file>
@@ -32,6 +31,7 @@
         <file>res/icon/zidingyi.png</file>
         <file>res/icon/nandu123.png</file>
         <file>res/icon/windowtitle.png</file>
+        <file>res/icon/startgame.png</file>
     </qresource>
     <qresource prefix="/image">
         <file>res/image/background.jpg</file>
@@ -41,5 +41,6 @@
     </qresource>
     <qresource prefix="/font">
         <file>res/font/foreign/Blackhawk-webfont.woff2.ttf</file>
+        <file>res/font/foreign/Comic Sans MS.ttf</file>
     </qresource>
 </RCC>
