@@ -3,7 +3,8 @@
 
 #include <QMainWindow>
 #include <QPainter>
-#include <QLabel>
+#include <QPushButton>
+#include "gamechoose.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,9 +19,10 @@ public:
     ~MainWindow();
     void paintEvent(QPaintEvent*);//重定义绘图事件
     void welcomeInit();
-    QLabel* pixlable;
+    QPushButton* pixbtn;
 private:
     Ui::MainWindow *ui;//引入ui
+    gameChoose* gameChoSecen;
 
 };
 #endif // MAINWINDOW_H

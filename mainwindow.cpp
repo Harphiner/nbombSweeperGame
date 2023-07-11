@@ -4,8 +4,10 @@
 #include <QLinearGradient>
 #include <QColor>
 #include <QTimer>
+#include <QPushButton>
 #include <QDebug>
 #include <QFontDatabase>
+#include "gamechoose.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,16 +21,25 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowIcon(QPixmap(":/icon/res/icon/windowtitle.png"));
     //设置固定大小
     this->setFixedSize(600,600);
-    //设置"开始游戏"图样标签
-    pixlable=new QLabel(this);
-    this->pixlable->setFixedSize(118,50);
-    this->pixlable->move(241,350);
+    //pixbtn为切换场景按钮
+    pixbtn=new QPushButton(this);
+    pixbtn->setStyleSheet("background-color: transparent;");
+    //设置pixbtn的信号与槽
+    connect(pixbtn,&QPushButton::clicked,this,[=](){
+        //切换场景
+        gameChoSecen = new gameChoose(this);
+        gameChoSecen->show();
+        this->hide();
+    });
+    this->pixbtn->setFixedSize(118,50);
+    this->pixbtn->move(241,350);
     welcomeInit();
 }
 //析构函数
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete gameChoSecen;
 }
 //绘图事件，设置背景渐变色，设置titleicon，设置startgame图片
 void MainWindow::paintEvent(QPaintEvent*)
@@ -47,9 +58,12 @@ void MainWindow::paintEvent(QPaintEvent*)
     painter.drawPixmap(20,50,50,50,pix);
     pix.load(":/image/res/image/title_red.png");
     painter.drawPixmap(70,35,900,100,pix);
+    //设置pixbtn的图片
     pix.load(":/icon/res/icon/startgame.png");
     QPixmap scaledPix = pix.scaled(118, 50, Qt::KeepAspectRatio);
-    pixlable->setPixmap(scaledPix);
+    QIcon ButtonIcon(scaledPix);
+    pixbtn->setIconSize(scaledPix.rect().size()); // 设置按钮图标大小为图片的大小
+    pixbtn->setIcon(ButtonIcon);
 }
 void MainWindow::welcomeInit()
 {
