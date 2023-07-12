@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     //pixbtn为切换场景按钮
     pixbtn=new QPushButton(this);
     pixbtn->setStyleSheet("background-color: transparent;");
+    pixbtn->setCursor(QCursor(Qt::PointingHandCursor));
     //设置pixbtn的信号与槽
     connect(pixbtn,&QPushButton::clicked,this,[=](){
         //切换场景

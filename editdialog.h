@@ -12,8 +12,9 @@ class editDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit editDialog(QWidget *parent = nullptr);
+    editDialog(QWidget *parent = nullptr);
     ~editDialog();
+     void signalAndSlotInit();//初始化信号与槽
 
 private:
     Ui::editDialog *ui;

@@ -62,6 +62,10 @@ gameChoose::gameChoose(QWidget *parent)
     btnDiff2->setStyleSheet("background-color: transparent;");
     btnDiff3->setStyleSheet("background-color: transparent;");
     btnDiffDiy->setStyleSheet("background-color: transparent;");
+    btnDiff1->setCursor(QCursor(Qt::PointingHandCursor));
+    btnDiff2->setCursor(QCursor(Qt::PointingHandCursor));
+    btnDiff3->setCursor(QCursor(Qt::PointingHandCursor));
+    btnDiffDiy->setCursor(QCursor(Qt::PointingHandCursor));
     // 将按钮添加到布局
     layout->addWidget(btnDiff1);
     layout->addWidget(btnDiff2);
