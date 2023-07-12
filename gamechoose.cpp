@@ -1,4 +1,5 @@
 #include "gamechoose.h"
+#include "editdialog.h"
 #include <QPainter>
 #include <QDebug>
 #include <QMenuBar>
@@ -34,23 +35,40 @@ gameChoose::gameChoose(QWidget *parent)
     setMenuBar(menuBar);
     //排列按钮
     QGroupBox* btngrp=new QGroupBox(this);
-    btngrp->setFixedSize(600,600);
+    btngrp->setFixedSize(200,600);
+    btngrp->move((this->width()-btngrp->width())/2,0);
+    btngrp->setStyleSheet("border:none");
     QVBoxLayout *layout = new QVBoxLayout(btngrp);
     layout->setSpacing(10);
     layout->setContentsMargins(5,5,5,5);
 
     // 5个按钮
-    btnDiff1=new QPushButton("easy");
-    btnDiff2=new QPushButton("normal");
-    btnDiff3=new QPushButton("hard");
-    btnDiffDiy=new QPushButton("diy");
-    btnDiffSaved=new QPushButton("saved");
+    btnDiff1=new QPushButton("简单");
+    btnDiff2=new QPushButton("正常");
+    btnDiff3=new QPushButton("困难");
+    btnDiffDiy=new QPushButton("自定义");
+    btnDiff1->setFixedSize(200,80);
+    btnDiff2->setFixedSize(200,80);
+    btnDiff3->setFixedSize(200,80);
+    btnDiffDiy->setFixedSize(200,80);
+    QFont font=btnDiff1->font();
+    font.setPointSize(20);
+    font.setBold(true);
+    btnDiff1->setFont(font);
+    btnDiff2->setFont(font);
+    btnDiff3->setFont(font);
+    btnDiffDiy->setFont(font);
+    btnDiff1->setStyleSheet("background-color: transparent;");
+    btnDiff2->setStyleSheet("background-color: transparent;");
+    btnDiff3->setStyleSheet("background-color: transparent;");
+    btnDiffDiy->setStyleSheet("background-color: transparent;");
     // 将按钮添加到布局
     layout->addWidget(btnDiff1);
     layout->addWidget(btnDiff2);
     layout->addWidget(btnDiff3);
     layout->addWidget(btnDiffDiy);
-    layout->addWidget(btnDiffSaved);
+    signalAndSlotInit();
+
 }
 
 void gameChoose::paintEvent(QPaintEvent*)
@@ -63,6 +81,13 @@ void gameChoose::paintEvent(QPaintEvent*)
     painter.setBrush(gradient);
     painter.drawRect(0, 0, width(), height());
 }
+void gameChoose::signalAndSlotInit(){
+    connect(btnDiffDiy,&QPushButton::clicked,[this](){
+        editDialog dlg(this);
+        dlg.exec();
+    });
+}
+
 gameChoose::~gameChoose()
 {
 }

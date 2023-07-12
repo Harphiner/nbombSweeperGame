@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QFontDatabase>
 #include "gamechoose.h"
+#include "editdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -34,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->pixbtn->setFixedSize(118,50);
     this->pixbtn->move(241,350);
     welcomeInit();
+    signalAndSlotInit();//初始化信号与槽
 }
 //析构函数
 MainWindow::~MainWindow()
@@ -104,4 +106,11 @@ void MainWindow::welcomeInit()
         }
     });
 
+}
+
+void MainWindow::signalAndSlotInit(){
+    connect(ui->actionedit,&QAction::triggered,[this](){
+        editDialog dlg(this);
+        dlg.exec();
+    });
 }

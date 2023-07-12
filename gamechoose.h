@@ -12,6 +12,7 @@ public:
     gameChoose(QWidget *parent = nullptr);
     ~gameChoose();
     void paintEvent (QPaintEvent*);//重定义绘图事件
+    void signalAndSlotInit();//初始化信号与槽
 protected:
     void closeEvent(QCloseEvent *event)  {
         if(event==nullptr){qDebug()<<"harphiner";}
@@ -22,7 +23,6 @@ private:
     QPushButton* btnDiff2;
     QPushButton* btnDiff3;
     QPushButton* btnDiffDiy;
-    QPushButton* btnDiffSaved;
 signals:
 
 };

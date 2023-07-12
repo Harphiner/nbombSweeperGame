@@ -19,6 +19,7 @@ public:
     ~MainWindow();
     void paintEvent(QPaintEvent*);//重定义绘图事件
     void welcomeInit();
+    void signalAndSlotInit();//初始化信号与槽
     QPushButton* pixbtn;
 private:
     Ui::MainWindow *ui;//引入ui
