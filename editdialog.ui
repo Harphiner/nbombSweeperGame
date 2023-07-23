@@ -37,7 +37,7 @@
         </font>
        </property>
        <property name="text">
-        <string>列数</string>
+        <string>列数（1-30）</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -58,7 +58,7 @@
       </spacer>
      </item>
      <item row="1" column="3">
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QLineEdit" name="rows"/>
      </item>
      <item row="0" column="3">
       <spacer name="verticalSpacer_4">
@@ -81,7 +81,7 @@
         </font>
        </property>
        <property name="text">
-        <string>行数</string>
+        <string>行数（1-30）</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -102,7 +102,7 @@
       </spacer>
      </item>
      <item row="3" column="3">
-      <widget class="QLineEdit" name="lineEdit_2"/>
+      <widget class="QLineEdit" name="cols"/>
      </item>
      <item row="1" column="5">
       <spacer name="horizontalSpacer_2">
@@ -118,7 +118,7 @@
       </spacer>
      </item>
      <item row="7" column="3">
-      <widget class="QLineEdit" name="lineEdit_3"/>
+      <widget class="QLineEdit" name="mine"/>
      </item>
      <item row="7" column="1">
       <widget class="QLabel" name="label_3">
@@ -128,7 +128,7 @@
         </font>
        </property>
        <property name="text">
-        <string>炸弹数</string>
+        <string>炸弹数（10-99）</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

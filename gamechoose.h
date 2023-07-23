@@ -13,11 +13,6 @@ public:
     ~gameChoose();
     void paintEvent (QPaintEvent*);//重定义绘图事件
     void signalAndSlotInit();//初始化信号与槽
-protected:
-    void closeEvent(QCloseEvent *event)  {
-        if(event==nullptr){qDebug()<<"harphiner";}
-        QApplication::quit();  // 关闭整个应用程序
-    }
 private:
     QPushButton* btnDiff1;
     QPushButton* btnDiff2;

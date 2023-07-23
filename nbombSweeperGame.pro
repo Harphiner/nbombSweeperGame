@@ -11,16 +11,21 @@ CONFIG += c++17
 SOURCES += \
     editdialog.cpp \
     gamechoose.cpp \
+    gamewindow.cpp \
+    item.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     editdialog.h \
     gamechoose.h \
+    gamewindow.h \
+    item.h \
     mainwindow.h
 
 FORMS += \
     editdialog.ui \
+    gamewindow.ui \
     mainwindow.ui
 
 # Default rules for deployment.

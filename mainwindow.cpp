@@ -9,6 +9,7 @@
 #include <QFontDatabase>
 #include "gamechoose.h"
 #include "editdialog.h"
+#include <gamewindow.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -29,9 +30,9 @@ MainWindow::MainWindow(QWidget *parent)
     //设置pixbtn的信号与槽
     connect(pixbtn,&QPushButton::clicked,this,[=](){
         //切换场景
-        gameChoSecen = new gameChoose(this);
+        gameChoSecen = new gameChoose();
         gameChoSecen->show();
-        this->hide();
+        this->close();
     });
     this->pixbtn->setFixedSize(118,50);
     this->pixbtn->move(241,350);
@@ -113,5 +114,26 @@ void MainWindow::signalAndSlotInit(){
     connect(ui->actionedit,&QAction::triggered,[this](){
         editDialog dlg(this);
         dlg.exec();
+    });
+    connect(ui->actioneasy,&QAction::triggered,[this](){
+        GameWindow* mygame=new GameWindow(10,10,10);
+        mygame->diff=QString("简单");
+        mygame->newGame();
+        mygame->show();
+        this->close();
+    });
+    connect(ui->actionmiddle,&QAction::triggered,[this](){
+        GameWindow* mygame=new GameWindow(20,20,40);
+        mygame->diff=QString("中等");
+        mygame->newGame();
+        mygame->show();
+        this->close();
+    });
+    connect(ui->actionhard,&QAction::triggered,[this](){
+        GameWindow* mygame=new GameWindow(30,30,99);
+        mygame->diff=QString("困难");
+        mygame->newGame();
+        mygame->show();
+        this->close();
     });
 }

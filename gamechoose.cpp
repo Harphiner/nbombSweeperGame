@@ -5,6 +5,7 @@
 #include <QMenuBar>
 #include <QVBoxLayout>
 #include <QGroupBox>
+#include <gamewindow.h>
 gameChoose::gameChoose(QWidget *parent)
     : QMainWindow{parent}
 {
@@ -14,6 +15,7 @@ gameChoose::gameChoose(QWidget *parent)
     this->setWindowIcon(QPixmap(":/icon/res/icon/windowtitle.png"));
     //设置固定大小
     this->setFixedSize(600,600);
+
     // 创建一个新的菜单栏
     QMenuBar *menuBar = new QMenuBar(this);
 
@@ -89,6 +91,27 @@ void gameChoose::signalAndSlotInit(){
     connect(btnDiffDiy,&QPushButton::clicked,[this](){
         editDialog dlg(this);
         dlg.exec();
+    });
+    connect(btnDiff1,&QPushButton::clicked,[this](){
+        GameWindow* mygame=new GameWindow(10,10,10);
+        mygame->diff=QString("简单");
+        mygame->newGame();
+        mygame->show();
+        this->close();
+    });
+    connect(btnDiff2,&QPushButton::clicked,[this](){
+        GameWindow* mygame=new GameWindow(20,20,40);
+        mygame->diff=QString("中等");
+        mygame->newGame();
+        mygame->show();
+        this->close();
+    });
+    connect(btnDiff3,&QPushButton::clicked,[this](){
+        GameWindow* mygame=new GameWindow(30,30,99);
+        mygame->diff=QString("困难");
+        mygame->newGame();
+        mygame->show();
+        this->close();
     });
 }
 
