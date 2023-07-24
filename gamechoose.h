@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QApplication>
 #include <QPushButton>
+#include <QCloseEvent>
+#include <QTimer>
 
 class gameChoose : public QMainWindow
 {
@@ -13,6 +15,14 @@ public:
     ~gameChoose();
     void paintEvent (QPaintEvent*);//重定义绘图事件
     void signalAndSlotInit();//初始化信号与槽
+    void closeEvent(QCloseEvent *event)
+    {
+        event->accept();  // 允许窗口关闭
+
+        // 在关闭事件处理结束后删除窗口对象
+        QTimer::singleShot(0, this, &gameChoose::deleteLater);
+    }
+
 private:
     QPushButton* btnDiff1;
     QPushButton* btnDiff2;

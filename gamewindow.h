@@ -5,8 +5,8 @@
 #include <QVector>
 #include <item.h>
 #include <QApplication>
-#include <gamechoose.h>
 #include <QProgressBar>
+#include <gamechoose.h>
 
 namespace Ui {
 class GameWindow;
@@ -30,13 +30,24 @@ public:
     ~GameWindow();
     QString diff;
     QProgressBar *progressBar;
-   // QTimer *timer2 ;
+    QPushButton *returnButton;
+    gameChoose* chosce=nullptr;
+    int openCount;
+    int flagCount;
+    QTimer *timer2 ;
+    void closeEvent(QCloseEvent *event)
+    {
+        event->accept();  // 允许窗口关闭
+
+        // 在关闭事件处理结束后删除窗口对象
+        QTimer::singleShot(0, this, &GameWindow::deleteLater);
+    }
 protected:
-//    void timerEvent(QTimerEvent *event);
+    void timerEvent(QTimerEvent *event);
 
 private:
-    //int timerId;
-    //int seconds;
+    int timerId;
+    int seconds;
     QPixmap flagimg;
     QPixmap mineimg;
     int rows;
@@ -45,10 +56,8 @@ private:
     QVector<QPoint> Mines;
     QVector<QVector<item*>> items;
     bool isFail;
-    int openCount;
-    //int flagCount;
     Ui::GameWindow *ui;
-    //bool pause=false;
+    bool pause;
 };
 
 #endif // GAMEWINDOW_H

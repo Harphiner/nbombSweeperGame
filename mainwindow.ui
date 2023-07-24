@@ -54,16 +54,8 @@
     </property>
     <addaction name="actionedit"/>
    </widget>
-   <widget class="QMenu" name="menu_more">
-    <property name="title">
-     <string>查看</string>
-    </property>
-    <addaction name="actionhistory"/>
-    <addaction name="actionassistant"/>
-   </widget>
    <addaction name="menu_defaultStart"/>
    <addaction name="menu_diy"/>
-   <addaction name="menu_more"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actioneasy">

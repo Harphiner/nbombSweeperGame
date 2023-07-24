@@ -12,6 +12,7 @@ editDialog::editDialog(QWidget *parent) :
     //设置对话框标题
     this->setWindowTitle("edit");
     signalAndSlotInit();
+    qDebug()<<QString("editdialog open");
 }
 
 void editDialog::signalAndSlotInit(){
@@ -71,4 +72,5 @@ void editDialog::signalAndSlotInit(){
 editDialog::~editDialog()
 {
     delete ui;
+    qDebug()<<QString("editdialog close");
 }

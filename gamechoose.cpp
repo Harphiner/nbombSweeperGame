@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include <QGroupBox>
 #include <gamewindow.h>
+static GameWindow* mygame=nullptr;
 gameChoose::gameChoose(QWidget *parent)
     : QMainWindow{parent}
 {
@@ -15,26 +16,6 @@ gameChoose::gameChoose(QWidget *parent)
     this->setWindowIcon(QPixmap(":/icon/res/icon/windowtitle.png"));
     //设置固定大小
     this->setFixedSize(600,600);
-
-    // 创建一个新的菜单栏
-    QMenuBar *menuBar = new QMenuBar(this);
-
-    // 创建一个新的菜单
-    QMenu *fileMenu_more = new QMenu(tr("查看"), this);
-
-    // 在菜单中添加两个动作
-    QAction *openAction_history = new QAction(tr("history"), this);
-    QIcon icon1(":/icon/res/icon/chakan.png");
-    openAction_history->setIcon(icon1);
-    fileMenu_more->addAction(openAction_history);
-    QAction *openAction_assistant = new QAction(tr("assistant"), this);
-    QIcon icon2(":/icon/res/icon/bangzhuwendang.png");
-    openAction_assistant->setIcon(icon2);
-    fileMenu_more->addAction(openAction_assistant);
-    // 将菜单添加到菜单栏
-    menuBar->addMenu(fileMenu_more);
-    // 将菜单栏设置为窗口的菜单栏
-    setMenuBar(menuBar);
     //排列按钮
     QGroupBox* btngrp=new QGroupBox(this);
     btngrp->setFixedSize(200,600);
@@ -74,7 +55,7 @@ gameChoose::gameChoose(QWidget *parent)
     layout->addWidget(btnDiff3);
     layout->addWidget(btnDiffDiy);
     signalAndSlotInit();
-
+    qDebug()<<QString("gameChoose open");
 }
 
 void gameChoose::paintEvent(QPaintEvent*)
@@ -93,28 +74,34 @@ void gameChoose::signalAndSlotInit(){
         dlg.exec();
     });
     connect(btnDiff1,&QPushButton::clicked,[this](){
-        GameWindow* mygame=new GameWindow(10,10,10);
+        mygame=new GameWindow(10,10,10);
         mygame->diff=QString("简单");
         mygame->newGame();
         mygame->show();
-        this->close();
+        this->~gameChoose();
     });
     connect(btnDiff2,&QPushButton::clicked,[this](){
-        GameWindow* mygame=new GameWindow(20,20,40);
+         mygame=new GameWindow(20,20,40);
         mygame->diff=QString("中等");
         mygame->newGame();
         mygame->show();
-        this->close();
+        this->~gameChoose();
     });
     connect(btnDiff3,&QPushButton::clicked,[this](){
-        GameWindow* mygame=new GameWindow(30,30,99);
+        mygame=new GameWindow(30,30,99);
         mygame->diff=QString("困难");
         mygame->newGame();
         mygame->show();
-        this->close();
+        this->~gameChoose();
     });
 }
 
 gameChoose::~gameChoose()
 {
+    delete btnDiff1;
+    delete btnDiff2;
+    delete btnDiff3;
+    delete btnDiffDiy;
+    //delete mygame;
+    qDebug()<<QString("gameChoose close");
 }

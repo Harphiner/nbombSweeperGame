@@ -44,31 +44,27 @@ GameWindow::GameWindow(int rows,int cols,int mine) :
         QFont font;
         font.setPointSize(16);
         // 创建返回按钮，并添加到状态栏
-        QPushButton *returnButton = new QPushButton("返回", this);
+        returnButton = new QPushButton("返回", this);
         returnButton->setFont(font);
         statusBar->addPermanentWidget(returnButton);
 
         // 连接按钮的槽函数，你可以在这里添加返回按钮的点击事件处理逻辑
         connect(returnButton, &QPushButton::clicked, [this](){
-            gameChoose* chosce=new gameChoose();
+            chosce=new gameChoose();
             chosce->show();
-            this->close();
+            this->~GameWindow();
         });
-//        ui->groupBox->setFixedSize(600,100);
-//        ui->groupBox->move(0,0);
-//        QPixmap pixmap(":/icon/res/icon/tongyong_timu_nandu2.png");
-//        font.setPointSize(20);
-//        font.setBold(true);
-//        ui->timerlable->setFont(font);
-//        ui->counterlable->setFont(font);
-//        ui->imagelable->setPixmap(pixmap.scaled(60, 60, Qt::KeepAspectRatio));
-//        ui->counterlable->setText(QString("已插旗帜数：%1").arg(0));
-//        ui->timerlable->setText(QString("计时器：%1%2:%3%4").arg(0).arg(0).arg(0).arg(0));
-        // 创建一个QTimer对象
-//        timer2 = new QTimer(this);
-//        connect(timer2, &QTimer::timeout, this,[this](){
-//           ui->counterlable->setText(QString("已插旗帜数：%1").arg(flagCount));
-//        });
+        ui->groupBox->setFixedSize(600,100);
+        ui->groupBox->move(0,0);
+        QPixmap pixmap(":/icon/res/icon/tongyong_timu_nandu2.png");
+        font.setPointSize(20);
+        font.setBold(true);
+        ui->timerlable->setFont(font);
+        ui->counterlable->setFont(font);
+        ui->imagelable->setPixmap(pixmap.scaled(60, 60, Qt::KeepAspectRatio));
+        ui->counterlable->setText(QString("已插旗帜数：%1").arg(0));
+        ui->timerlable->setText(QString("计时器：%1%2:%3%4").arg(0).arg(0).arg(0).arg(0));
+qDebug()<<QString("gamewindow open");
 }
 
 void GameWindow::newGame(){
@@ -76,12 +72,17 @@ void GameWindow::newGame(){
     releaseItems();
     initGame();
     openCount=0;
-    //flagCount=0;
+    flagCount=0;
     progressBar->setValue(0);
-    //seconds=0;
-    //pause=false;
-    //timerId = startTimer(1000);
-   // timer2->start(10);
+   seconds=0;
+    pause=false;
+    timerId = startTimer(1000);
+    //创建一个QTimer对象
+    timer2 = new QTimer(this);
+    connect(timer2, &QTimer::timeout, this,[this](){
+       ui->counterlable->setText(QString("已插旗帜数：%1").arg(flagCount));
+    });
+    timer2->start(10);
 }
 
 void GameWindow::releaseItems(){
@@ -247,7 +248,7 @@ void GameWindow::mousePressEvent(QMouseEvent *event){
              if(it->isMine)
              {
                 gameover();
-                //pause=true;
+                pause=true;
                 QMessageBox::StandardButton ret;
                 ret=QMessageBox::information(nullptr,"游戏结束","是否要重新开始？",QMessageBox::Yes,QMessageBox::No);
                 if(ret==QMessageBox::Yes)
@@ -270,7 +271,7 @@ void GameWindow::mousePressEvent(QMouseEvent *event){
                 }
                 if(findAll())
                 {
-                     //pause=true;
+                    pause=true;
                     QMessageBox::StandardButton ret;
                      ret=QMessageBox::information(nullptr,"游戏结束","游戏胜利！是否要重新开始？",QMessageBox::Yes,QMessageBox::No);
                     if(ret==QMessageBox::Yes)
@@ -292,17 +293,17 @@ void GameWindow::mousePressEvent(QMouseEvent *event){
         {
              it->isMarked=false;
              openCount--;
-             //flagCount--;
+             flagCount--;
               progressBar->setValue(openCount*100/(rows*cols-mine));
         }else if(!it->isOpen)
         {
              it->isMarked=true;
               openCount++;
-             //flagCount++;
+             flagCount++;
               progressBar->setValue(openCount*100/(rows*cols-mine));
                 if(findAll())
                 {
-                 //pause=true;
+                 pause=true;
                     QMessageBox::StandardButton ret;
                      ret=QMessageBox::information(nullptr,"游戏结束","游戏胜利！是否要重新开始？",QMessageBox::Yes,QMessageBox::No);
                     if(ret==QMessageBox::Yes)
@@ -400,18 +401,24 @@ void GameWindow::gameover()
 GameWindow::~GameWindow()
 {
     delete ui;
+    //delete chosce;
+    delete returnButton;
+    delete progressBar;
+    delete timer2;
+    releaseItems();
+    qDebug()<<QString("gamewindow close");
 }
 
-//void GameWindow::timerEvent(QTimerEvent *event) {
-//    if (event->timerId() == timerId&&!pause) {
-//        seconds++;
+void GameWindow::timerEvent(QTimerEvent *event) {
+    if (event->timerId() == timerId&&(!pause)) {
+        seconds++;
 
-//        int secondss = seconds % 60;
-//        int secondsm = seconds / 60;
-//        int seLow = secondss % 10;
-//        int seHig = secondss / 10;
-//        int miLow = secondsm % 10;
-//        int miHig = secondsm / 10;
-//        ui->timerlable->setText(QString("计时器：%1%2:%3%4").arg(miHig).arg(miLow).arg(seHig).arg(seLow));
-//    }
-//}
+        int secondss = seconds % 60;
+        int secondsm = seconds / 60;
+        int seLow = secondss % 10;
+        int seHig = secondss / 10;
+        int miLow = secondsm % 10;
+        int miHig = secondsm / 10;
+        ui->timerlable->setText(QString("计时器：%1%2:%3%4").arg(miHig).arg(miLow).arg(seHig).arg(seLow));
+    }
+}

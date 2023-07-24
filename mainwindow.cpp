@@ -32,18 +32,22 @@ MainWindow::MainWindow(QWidget *parent)
         //切换场景
         gameChoSecen = new gameChoose();
         gameChoSecen->show();
-        this->close();
+        this->~MainWindow();
     });
     this->pixbtn->setFixedSize(118,50);
     this->pixbtn->move(241,350);
     welcomeInit();
     signalAndSlotInit();//初始化信号与槽
+    qDebug()<<QString("mainwindow open");
 }
 //析构函数
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete gameChoSecen;
+    delete pixbtn;
+    //delete gameChoSecen;
+   // delete mygame1;
+    qDebug()<<QString("mainwindow close");
 }
 //绘图事件，设置背景渐变色，设置titleicon，设置startgame图片
 void MainWindow::paintEvent(QPaintEvent*)
@@ -116,24 +120,24 @@ void MainWindow::signalAndSlotInit(){
         dlg.exec();
     });
     connect(ui->actioneasy,&QAction::triggered,[this](){
-        GameWindow* mygame=new GameWindow(10,10,10);
-        mygame->diff=QString("简单");
-        mygame->newGame();
-        mygame->show();
-        this->close();
+        mygame1=new GameWindow(10,10,10);
+        mygame1->diff=QString("简单");
+        mygame1->newGame();
+        mygame1->show();
+        this->~MainWindow();
     });
     connect(ui->actionmiddle,&QAction::triggered,[this](){
-        GameWindow* mygame=new GameWindow(20,20,40);
-        mygame->diff=QString("中等");
-        mygame->newGame();
-        mygame->show();
-        this->close();
+        mygame1=new GameWindow(20,20,40);
+        mygame1->diff=QString("中等");
+        mygame1->newGame();
+        mygame1->show();
+        this->~MainWindow();
     });
     connect(ui->actionhard,&QAction::triggered,[this](){
-        GameWindow* mygame=new GameWindow(30,30,99);
-        mygame->diff=QString("困难");
-        mygame->newGame();
-        mygame->show();
-        this->close();
+        mygame1=new GameWindow(30,30,99);
+        mygame1->diff=QString("困难");
+        mygame1->newGame();
+        mygame1->show();
+        this->~MainWindow();
     });
 }

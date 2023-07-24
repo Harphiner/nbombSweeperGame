@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QPushButton>
 #include "gamechoose.h"
+#include <gamewindow.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,10 +21,10 @@ public:
     void paintEvent(QPaintEvent*);//重定义绘图事件
     void welcomeInit();
     void signalAndSlotInit();//初始化信号与槽
-    QPushButton* pixbtn;
+    QPushButton* pixbtn=nullptr;
 private:
     Ui::MainWindow *ui;//引入ui
-    gameChoose* gameChoSecen;
-
+    gameChoose* gameChoSecen=nullptr;
+    GameWindow* mygame1=nullptr;
 };
 #endif // MAINWINDOW_H
