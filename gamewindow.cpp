@@ -235,7 +235,7 @@ void GameWindow::mousePressEvent(QMouseEvent* event) {
                 openCount++;
                 progressBar->setValue(openCount * 100 / (rows * cols - bombNum));
                 if (it->number == 0) {
-                    bfs(pt);
+                    dfs(pt);
                 }
             }
         }
@@ -284,7 +284,7 @@ bool GameWindow::victory() {
     return true;
 }
 
-void GameWindow::bfs(QPoint pt) {
+void GameWindow::dfs(QPoint pt) {
     QPoint cur = pt;
     QVector<QPoint> choices;
     choices.push_back(QPoint(-1, 0));
@@ -304,7 +304,7 @@ void GameWindow::bfs(QPoint pt) {
             openCount++;
             progressBar->setValue(openCount * 100 / (rows * cols - bombNum));
             if (it->number == 0) {
-                bfs(cur);
+                dfs(cur);
             }
         }
     }

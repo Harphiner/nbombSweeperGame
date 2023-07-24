@@ -25,7 +25,7 @@ class GameWindow : public QMainWindow {
     void updateWindow(QPainter *p, item *it);
     void gameover();
     void mousePressEvent(QMouseEvent *event);
-    void bfs(QPoint pt);
+    void dfs(QPoint pt);
     bool victory();
     ~GameWindow();
     QProgressBar *progressBar;
