@@ -1,41 +1,39 @@
 #include "editdialog.h"
-#include "ui_editdialog.h"
-#include <item.h>
+
 #include <gamewindow.h>
+#include <item.h>
+
 #include <QMessageBox>
 
-editDialog::editDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::editDialog)
-{
+#include "ui_editdialog.h"
+
+editDialog::editDialog(QWidget* parent) : QDialog(parent), ui(new Ui::editDialog) {
     ui->setupUi(this);
-    //设置对话框标题
+    // 设置对话框标题
     this->setWindowTitle("edit");
     signalAndSlotInit();
-    qDebug()<<QString("editdialog open");
+    qDebug() << QString("editdialog open");
 }
 
-void editDialog::signalAndSlotInit(){
-    connect(ui->okbtn,&QPushButton::clicked,[this](){
-        QString rowsstr=ui->rows->text();
-        QString colsstr=ui->cols->text();
-        QString minestr=ui->mine->text();
+void editDialog::signalAndSlotInit() {
+    connect(ui->okbtn, &QPushButton::clicked, [this]() {
+        QString rowsstr = ui->rows->text();
+        QString colsstr = ui->cols->text();
+        QString minestr = ui->bombNum->text();
         bool rowok;
         bool colok;
         bool mineok;
-        int rows=rowsstr.toInt(&rowok);
-        int cols=colsstr.toInt(&colok);
-        int mine=minestr.toInt(&mineok);
-        if(rows>0&&rows<31&&cols>0&&cols<31&&mine>9&&mine<100&&rowok&&colok&&mineok)
-        {
-            GameWindow* mygame=new GameWindow(rows,cols,mine);
-            mygame->diff=QString("%1×%2,%3").arg(rows).arg(cols).arg(mine);
-            mygame->newGame();
+        int rows = rowsstr.toInt(&rowok);
+        int cols = colsstr.toInt(&colok);
+        int bombNum = minestr.toInt(&mineok);
+        if (rows > 0 && rows < 31 && cols > 0 && cols < 31 && bombNum > 9 && bombNum < 100 &&
+            rowok && colok && mineok) {
+            GameWindow* mygame = new GameWindow(rows, cols, bombNum);
+            mygame->startMyGame();
             QWidget* oldWindow = this->parentWidget();
 
             // 确保旧窗口（parent widget）确实存在
-            if(oldWindow != nullptr)
-            {
+            if (oldWindow != nullptr) {
                 // 获取旧窗口的几何信息
                 QPoint oldPos = oldWindow->pos();
                 QSize oldSize = oldWindow->size();
@@ -56,21 +54,17 @@ void editDialog::signalAndSlotInit(){
             mygame->show();
             this->parentWidget()->close();
             this->close();
-        }else{
-             QMessageBox::warning(this, "错误", "输入数据有误!");
-             ui->rows->clear();
-             ui->cols->clear();
-             ui->mine->clear();
+        } else {
+            QMessageBox::warning(this, "错误", "输入数据有误!");
+            ui->rows->clear();
+            ui->cols->clear();
+            ui->bombNum->clear();
         }
-
     });
-    connect(ui->nobtn,&QPushButton::clicked,[this](){
-        this->close();
-    });
+    connect(ui->nobtn, &QPushButton::clicked, [this]() { this->close(); });
 }
 
-editDialog::~editDialog()
-{
+editDialog::~editDialog() {
     delete ui;
-    qDebug()<<QString("editdialog close");
+    qDebug() << QString("editdialog close");
 }

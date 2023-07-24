@@ -1,63 +1,62 @@
 #ifndef GAMEWINDOW_H
 #define GAMEWINDOW_H
 
-#include <QMainWindow>
-#include <QVector>
-#include <item.h>
-#include <QApplication>
-#include <QProgressBar>
 #include <gamechoose.h>
+#include <item.h>
+
+#include <QApplication>
+#include <QMainWindow>
+#include <QProgressBar>
+#include <QVector>
 
 namespace Ui {
 class GameWindow;
 }
 
-class GameWindow : public QMainWindow
-{
+class GameWindow : public QMainWindow {
     Q_OBJECT
 
-public:
-    explicit GameWindow(int rows,int cols,int mine);
-    void newGame();
-    void releaseItems();
-    void initGame();
-     void paintEvent (QPaintEvent*);//重定义绘图事件
-    void drawItem(QPainter* p,item* it);
-     void gameover();
-    void mousePressEvent(QMouseEvent * event);
-     void openEmptyItem(QPoint pt);
-    bool findAll();
+   public:
+    explicit GameWindow(int rows, int cols, int bombNum);
+    void startMyGame();
+    void endGame();
+    void initMyGame();
+    void paintEvent(QPaintEvent *);  // 重定义绘图事件
+    void updateWindow(QPainter *p, item *it);
+    void gameover();
+    void mousePressEvent(QMouseEvent *event);
+    void bfs(QPoint pt);
+    bool victory();
     ~GameWindow();
-    QString diff;
     QProgressBar *progressBar;
     QPushButton *returnButton;
-    gameChoose* chosce=nullptr;
+    gameChoose *chosce = nullptr;
     int openCount;
     int flagCount;
-    QTimer *timer2 ;
-    void closeEvent(QCloseEvent *event)
-    {
+    QTimer *timer2;
+    void closeEvent(QCloseEvent *event) {
         event->accept();  // 允许窗口关闭
 
         // 在关闭事件处理结束后删除窗口对象
         QTimer::singleShot(0, this, &GameWindow::deleteLater);
     }
-protected:
+
+   protected:
     void timerEvent(QTimerEvent *event);
 
-private:
+   private:
     int timerId;
     int seconds;
-    QPixmap flagimg;
-    QPixmap mineimg;
+    QPixmap flagImg;
+    QPixmap bombImg;
     int rows;
     int cols;
-    int mine;
+    int bombNum;
     QVector<QPoint> Mines;
-    QVector<QVector<item*>> items;
-    bool isFail;
+    QVector<QVector<item *>> items;
+    bool ifDead;
     Ui::GameWindow *ui;
     bool pause;
 };
 
-#endif // GAMEWINDOW_H
+#endif  // GAMEWINDOW_H
