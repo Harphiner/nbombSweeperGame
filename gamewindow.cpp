@@ -222,7 +222,7 @@ void GameWindow::mousePressEvent(QMouseEvent* event) {
                 gameover();
                 pause = true;
                 QMessageBox::StandardButton ans;
-                ans = QMessageBox::information(nullptr, "游戏结束", "是否要重新开始？",
+                ans = QMessageBox::information(nullptr, "游戏结束", "游戏失败！是否要重新开始？",
                                                QMessageBox::Yes, QMessageBox::No);
                 if (ans == QMessageBox::Yes) {
                     startMyGame();
@@ -263,6 +263,18 @@ void GameWindow::mousePressEvent(QMouseEvent* event) {
                 return;
             }
         }
+    }
+    if (victory()) {
+        pause = true;
+        QMessageBox::StandardButton ans;
+        ans = QMessageBox::information(nullptr, "游戏结束", "游戏胜利！是否要重新开始？",
+                                           QMessageBox::Yes, QMessageBox::No);
+        if (ans == QMessageBox::Yes) {
+            startMyGame();
+        } else {
+            QApplication::quit();
+        }
+        return;
     }
 }
 
